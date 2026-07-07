@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: career-hub-1057
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    autoDeploy: true
+    envVars:
+      # Konekcija ka bazi ispod (Render je sam popunjava)
+      - key: DATABASE_URL
+        fromDatabase:
+          name: careerhub-db-1057
+          property: connectionString
+      # JWT tajni kljuc — Render ga sam generise
+      - key: JWT_SECRET
+        generateValue: true
+      # Opcioni kljucevi za plate/vesti — unosis ih rucno u Render dashboard-u
+      - key: ADZUNA_APP_ID
+        sync: false
+      - key: ADZUNA_APP_KEY
+        sync: false
+      - key: GNEWS_API_KEY
+        sync: false
+
+databases:
+  - name: careerhub-db-1057
+    plan: free
