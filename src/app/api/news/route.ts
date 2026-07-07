@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const apiKey = process.env.GNEWS_APP_KEY;
+        const apiKey = process.env.GNEWS_API_KEY;
         
         const url = `https://gnews.io/api/v4/top-headlines?category=technology&lang=en&apikey=${apiKey}`;
 

@@ -90,12 +90,14 @@ async function main() {
   }
 
   const allCompanies = await prisma.company.findMany();
+  // Rokovi se racunaju relativno od trenutka seed-ovanja da oglasi ostanu aktivni.
+  const daysFromNow = (n: number) => new Date(Date.now() + n * 24 * 60 * 60 * 1000);
   const ads = [
-    { title: "Junior Frontend Developer", description: "Trazimo junior frontend developera.", requirements: "React, TypeScript", location: "Beograd", jobType: JobType.JOB, deadline: new Date("2026-06-01") },
-    { title: "Backend Praksa", description: "Praksa za backend developere.", requirements: "Node.js, PostgreSQL", location: "Novi Sad", jobType: JobType.INTERNSHIP, deadline: new Date("2026-05-01") },
-    { title: "DevOps Engineer", description: "Trazimo DevOps inzenjera.", requirements: "Docker, Kubernetes", location: "Beograd", jobType: JobType.JOB, deadline: new Date("2026-07-01") },
-    { title: "Python Developer", description: "Razvoj backend servisa u Pythonu.", requirements: "Python, Django", location: "Subotica", jobType: JobType.JOB, deadline: new Date("2026-06-15") },
-    { title: "UI/UX Dizajner Praksa", description: "Praksa za dizajnere.", requirements: "Figma, Adobe XD", location: "Novi Sad", jobType: JobType.INTERNSHIP, deadline: new Date("2026-05-15") },
+    { title: "Junior Frontend Developer", description: "Trazimo junior frontend developera.", requirements: "React, TypeScript", location: "Beograd", jobType: JobType.JOB, deadline: daysFromNow(30) },
+    { title: "Backend Praksa", description: "Praksa za backend developere.", requirements: "Node.js, PostgreSQL", location: "Novi Sad", jobType: JobType.INTERNSHIP, deadline: daysFromNow(45) },
+    { title: "DevOps Engineer", description: "Trazimo DevOps inzenjera.", requirements: "Docker, Kubernetes", location: "Beograd", jobType: JobType.JOB, deadline: daysFromNow(60) },
+    { title: "Python Developer", description: "Razvoj backend servisa u Pythonu.", requirements: "Python, Django", location: "Subotica", jobType: JobType.JOB, deadline: daysFromNow(20) },
+    { title: "UI/UX Dizajner Praksa", description: "Praksa za dizajnere.", requirements: "Figma, Adobe XD", location: "Novi Sad", jobType: JobType.INTERNSHIP, deadline: daysFromNow(40) },
   ];
 
   for (let i = 0; i < ads.length; i++) {

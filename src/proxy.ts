@@ -41,7 +41,7 @@ export async function proxy(req: NextRequest) {
         requestHeaders.set('x-user-id', payload.userId.toString());
         requestHeaders.set('x-user-role', payload.role);
     }
-    if (pathname.startsWith('/api/ads') && req.method === 'POST') {
+    if (pathname === '/api/ads' && req.method === 'POST') {
         if (!payload || payload.role !== Role.COMPANY) {
             return NextResponse.json({ message: 'Samo kompanije mogu kreirati oglase' }, { status: 403 });
         }

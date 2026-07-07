@@ -60,6 +60,12 @@ export async function POST(req: NextRequest) {
         }
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) return NextResponse.json({ message: "Pogresan email ili lozinka" }, { status: 401 });
+        if (user.isBanned) {
+            return NextResponse.json(
+                { message: user.banReason ? `Vas nalog je banovan: ${user.banReason}` : "Vas nalog je banovan." },
+                { status: 403 }
+            );
+        }
         const JWT_SECRET = process.env.JWT_SECRET;
         if (!JWT_SECRET) {
             throw new Error("JWT_SECRET nije definisan u .env");
