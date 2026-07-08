@@ -1,6 +1,6 @@
 # CareerHub — Platforma za poslove i prakse
 
-**Live:** https://career-hub-xolr.onrender.com/
+**Live:**  https://career-hub-1057.onrender.com
 
 > Hostovano na Render free tier-u — prvi load ume da traje ~30 sekundi dok se instanca „probudi".
 
